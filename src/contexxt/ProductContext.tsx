@@ -12,10 +12,13 @@ import {
 export const ShoppingCart = createContext({} as IBasketContext);
 
 export function ProductContext({ children }: ıChildren) {
+    const [isOpen, setIsOpen] = useState(false)
   const [card, setCard] = useLocalStorage<Product[]>(
     "shopping-cart",
     []
   )
+  const openCart = () => setIsOpen(true)
+  const closeCart = () => setIsOpen(false)
   const getData = async () => {
     try {
       setLoad(true);
@@ -32,7 +35,7 @@ export function ProductContext({ children }: ıChildren) {
 
   const [load, setLoad] = useState(false);
   return (
-    <ShoppingCart.Provider value={{ card, setCard, getData,load }}>
+    <ShoppingCart.Provider value={{ card, setCard, getData,load,closeCart,openCart,isOpen,setIsOpen }}>
       {children}
     </ShoppingCart.Provider>
   );

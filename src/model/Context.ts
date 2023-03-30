@@ -7,7 +7,11 @@ export type IBasketContext = {
   card:Product[];
   setCard: React.Dispatch<React.SetStateAction<Product[]>>
   getData:()=>void,
-  load:boolean
+  load:boolean,
+  isOpen:boolean,
+  closeCart: () => void,
+  openCart: () => void
+  setIsOpen: (e:boolean) => void
 };
 
 export type IResponse ={

@@ -1,13 +1,19 @@
 import React from "react";
 
-import "./App.css";
 import { ProductContext } from "./contexxt/ProductContext";
-import Home from "./Home";
-
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import ProductDetails from "./pages/ProductDetails";
 function App() {
   return (
     <ProductContext>
-      <Home/>
+      <Navbar />
+      <div className="h-[60px]"></div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:product" element={<ProductDetails />} />
+      </Routes>
     </ProductContext>
   );
 }
