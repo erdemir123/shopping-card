@@ -5,7 +5,7 @@ import Modal from "../components/Modal";
 import { Product } from "../model/Context";
 
 const Home = () => {
-  const { card, setCard, getData, load, openCart, isOpen, isbasket } =
+  const { card, setCard, getData, load, openCart, isOpen, isbasket,closeBasket } =
     useContext(ShoppingCart);
   const [modal, setModal] = useState<Product>({} as Product);
   useEffect(() => {
@@ -14,7 +14,7 @@ const Home = () => {
 
 
   return (
-    <div className="flex flex-wrap justify-center items-center  gap-6 mt-12 mb-6">
+    <div className="flex flex-wrap justify-center items-center  gap-6 mt-12 mb-6" onClick={() => closeBasket()}>
       {card.map((item) => (
         <div className="h-[450px] rounded-2xl shadow-md bg-slate-300 shadow-slate-500">
           <Card item={item} setModal={setModal} />

@@ -2,17 +2,13 @@ import { createContext, useState } from "react";
 import axios from "axios";
 
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import {
-  IBasketContext,
-  ıChildren,
-  Product,
-} from "../model/Context";
+import { IBasket, IBasketContext, ıChildren, Product } from "../model/Context";
 
 export const ShoppingCart = createContext({} as IBasketContext);
 
 export function ProductContext({ children }: ıChildren) {
   const [isOpen, setIsOpen] = useState(false);
-  const [basket, setBasket] = useState();
+  const [basket, setBasket] = useState<IBasket[] | []>([]);
   const [isbasket, setIsBasket] = useState(false);
   const [card, setCard] = useLocalStorage<Product[]>("shopping-cart", []);
   const openCart = () => setIsOpen(true);
@@ -46,7 +42,10 @@ export function ProductContext({ children }: ıChildren) {
         isOpen,
         setIsOpen,
         openBasket,
-        closeBasket,isbasket
+        closeBasket,
+        isbasket,
+        basket,
+        setBasket,
       }}
     >
       {children}
