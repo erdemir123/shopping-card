@@ -10,8 +10,11 @@ export type IBasketContext = {
   load:boolean,
   isOpen:boolean,
   closeCart: () => void,
-  openCart: () => void
-  setIsOpen: (e:boolean) => void
+  openCart: () => void,
+  closeBasket: () => void,
+  openBasket: () => void,
+  setIsOpen: (e:boolean) => void,
+  basket:boolean
 };
 
 export type IResponse ={

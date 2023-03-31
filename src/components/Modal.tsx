@@ -33,25 +33,21 @@ const Modal = ({ modalProduct }: Imodal) => {
       ></div>
 
       <div className="fixed z-[5000] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2  flex justify-center items-center gap-6">
-        <p className="absolute -top-10 text-white font-bold text-2xl">
+        <p className="absolute -top-20 text-white font-bold text-2xl w-[200px]">
           {modalProduct.title}
         </p>
-        {currentStepIndex != modalProduct.images.length - 1 && (
+        {currentStepIndex != modalProduct.images?.length - 1 && (
           <button onClick={next} className="font-bold text-2xl ">
             <FaArrowCircleRight />
           </button>
         )}
 
-        {0 <= currentStepIndex &&
-          currentStepIndex < modalProduct.images.length && (
-            <>
-              <img
-                className="w-[60%] h-[500px] rounded-xl shadow-xl shadow-gray-800"
-                src={modalProduct.images[currentStepIndex]}
-                alt=""
-              />
-            </>
-          )}
+        <img
+          className=" h-[500px] rounded-xl shadow-xl shadow-gray-800"
+          src={modalProduct.images[currentStepIndex]}
+          alt=""
+        />
+
         {currentStepIndex != 0 && (
           <button onClick={back} className="font-bold text-2xl ">
             <FaArrowCircleLeft />

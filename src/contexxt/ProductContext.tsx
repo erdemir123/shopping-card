@@ -12,13 +12,13 @@ import {
 export const ShoppingCart = createContext({} as IBasketContext);
 
 export function ProductContext({ children }: ıChildren) {
-    const [isOpen, setIsOpen] = useState(false)
-  const [card, setCard] = useLocalStorage<Product[]>(
-    "shopping-cart",
-    []
-  )
-  const openCart = () => setIsOpen(true)
-  const closeCart = () => setIsOpen(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [basket, setIsBasket] = useState(false);
+  const [card, setCard] = useLocalStorage<Product[]>("shopping-cart", []);
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
+  const openBasket = () => setIsBasket(true);
+  const closeBasket = () => setIsBasket(false);
   const getData = async () => {
     try {
       setLoad(true);
@@ -27,15 +27,28 @@ export function ProductContext({ children }: ıChildren) {
     } catch (error) {
       console.log(error);
     } finally {
-     setTimeout(()=>{
+      setTimeout(() => {
         setLoad(false);
-     },3000)
+      }, 3000);
     }
   };
 
   const [load, setLoad] = useState(false);
   return (
-    <ShoppingCart.Provider value={{ card, setCard, getData,load,closeCart,openCart,isOpen,setIsOpen }}>
+    <ShoppingCart.Provider
+      value={{
+        card,
+        setCard,
+        getData,
+        load,
+        closeCart,
+        openCart,
+        isOpen,
+        setIsOpen,
+        openBasket,
+        closeBasket,basket
+      }}
+    >
       {children}
     </ShoppingCart.Provider>
   );
