@@ -5,16 +5,14 @@ import Modal from "../components/Modal";
 import { Product } from "../model/Context";
 
 const Home = () => {
-  const { card, setCard, getData, load, openCart, isOpen, basket } =
+  const { card, setCard, getData, load, openCart, isOpen, isbasket } =
     useContext(ShoppingCart);
   const [modal, setModal] = useState<Product>({} as Product);
   useEffect(() => {
     getData();
   }, []);
 
-  useEffect(() => {
-    console.log(basket);
-  }, [basket]);
+
   return (
     <div className="flex flex-wrap justify-center items-center  gap-6 mt-12 mb-6">
       {card.map((item) => (

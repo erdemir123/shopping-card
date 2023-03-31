@@ -5,7 +5,6 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import {
   IBasketContext,
   ıChildren,
-  IResponse,
   Product,
 } from "../model/Context";
 
@@ -13,7 +12,8 @@ export const ShoppingCart = createContext({} as IBasketContext);
 
 export function ProductContext({ children }: ıChildren) {
   const [isOpen, setIsOpen] = useState(false);
-  const [basket, setIsBasket] = useState(false);
+  const [basket, setBasket] = useState();
+  const [isbasket, setIsBasket] = useState(false);
   const [card, setCard] = useLocalStorage<Product[]>("shopping-cart", []);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
@@ -46,7 +46,7 @@ export function ProductContext({ children }: ıChildren) {
         isOpen,
         setIsOpen,
         openBasket,
-        closeBasket,basket
+        closeBasket,isbasket
       }}
     >
       {children}

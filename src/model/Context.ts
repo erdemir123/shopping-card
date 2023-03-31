@@ -14,7 +14,7 @@ export type IBasketContext = {
   closeBasket: () => void,
   openBasket: () => void,
   setIsOpen: (e:boolean) => void,
-  basket:boolean
+  isbasket:boolean
 };
 
 export type IResponse ={

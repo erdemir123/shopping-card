@@ -3,12 +3,12 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { ShoppingCart } from "../contexxt/ProductContext";
 
 const Basket = () => {
-  const { closeBasket, basket } = useContext(ShoppingCart);
-  console.log(basket);
+  const { closeBasket, isbasket } = useContext(ShoppingCart);
+  
   return (
     <div
       className={`${
-        basket ? "right-0" : "-right-[100%]"
+        isbasket ? "right-0" : "-right-[100%]"
       } w-[400px] fixed h-[100vh] top-0  border bg-slate-300 transition-all duration-500`}
     >
       <AiFillCloseCircle onClick={() => closeBasket()} />
