@@ -10,28 +10,8 @@ interface ICard {
 const Card = ({ item, setModal }: ICard) => {
   const navigate = useNavigate();
 
-  const { openCart, setBasket, basket } = useContext(ShoppingCart);
-  const handleBasket = (item: Product) => {
-    const basketProduct = basket.find(
-      (basketItem: any) => basketItem.product.id === item.id
-    );
-    console.log(basketProduct?.amount);
-    if (basketProduct) {
-      basketProduct.amount += 1;
-      setBasket([
-        ...basket.filter((a:any)=>a.product.id !== item.id),
-        {
-          product: item,
-          amount: basketProduct.amount,
-        },
-        
-      ]);
-      console.log("bura")
-    } else {
-      setBasket([...basket.filter((a:any)=>a.product.id !== item.id), {product:item, amount: 1} ]);
-      console.log("bura else")
-    }
-  };
+  const { openCart, setBasket, basket,handleBasket } = useContext(ShoppingCart);
+  
   useEffect(() => {
     console.log(basket);
   }, [basket]);

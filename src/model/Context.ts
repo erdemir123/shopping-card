@@ -17,6 +17,7 @@ export type IBasketContext = {
   isbasket: boolean;
   basket: IBasket[] | [];
   setBasket: React.Dispatch<React.SetStateAction<[] | IBasket[]>>;
+  handleBasket:(e:Product)=>void
 };
 
 export type IResponse = {

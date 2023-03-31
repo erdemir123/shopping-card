@@ -8,7 +8,7 @@ export const ShoppingCart = createContext({} as IBasketContext);
 
 export function ProductContext({ children }: ıChildren) {
   const [isOpen, setIsOpen] = useState(false);
-  const [basket, setBasket] = useState<IBasket[] | []>([]);
+  const [basket, setBasket] = useLocalStorage<IBasket[] >("basket-cart", [])
   const [isbasket, setIsBasket] = useState(false);
   const [card, setCard] = useLocalStorage<Product[]>("shopping-cart", []);
   const openCart = () => setIsOpen(true);
@@ -26,6 +26,26 @@ export function ProductContext({ children }: ıChildren) {
       setTimeout(() => {
         setLoad(false);
       }, 3000);
+    }
+  };
+  const handleBasket = (item: Product) => {
+    const basketProduct = basket.find(
+      (basketItem: any) => basketItem.product.id === item.id
+    );
+    if (basketProduct) {
+      basketProduct.amount += 1;
+      setBasket([
+        ...basket.filter((a: any) => a.product.id !== item.id),
+        {
+          product: item,
+          amount: basketProduct.amount,
+        },
+      ]);
+    } else {
+      setBasket([
+        ...basket.filter((a: any) => a.product.id !== item.id),
+        { product: item, amount: 1 },
+      ]);
     }
   };
 
@@ -46,6 +66,7 @@ export function ProductContext({ children }: ıChildren) {
         isbasket,
         basket,
         setBasket,
+        handleBasket,
       }}
     >
       {children}
