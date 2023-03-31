@@ -5,7 +5,11 @@ import { ShoppingCart } from "../contexxt/ProductContext";
 const Basket = () => {
   let sum: number = 0;
   const { closeBasket, isbasket, basket } = useContext(ShoppingCart);
-
+  basket
+    .map((item) => item.product.price * item.amount)
+    ?.forEach((element) => {
+      sum += element;
+    });
   return (
     <div
       className={`${
